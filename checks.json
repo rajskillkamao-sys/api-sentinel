@@ -1,0 +1,62 @@
+[
+  {
+    "url": "https://api.github.com",
+    "status": "UP",
+    "latency": 499,
+    "time": "2026-04-12T12:55:32.064Z"
+  },
+  {
+    "url": "github.com",
+    "status": "DOWN",
+    "latency": 0,
+    "time": "2026-04-12T12:52:41.512Z"
+  },
+  {
+    "url": " http://localhost:3000",
+    "status": "UP",
+    "latency": 4,
+    "time": "2026-04-12T12:47:57.233Z"
+  },
+  {
+    "url": "youtube.com",
+    "status": "DOWN",
+    "latency": 0,
+    "time": "2026-04-12T12:45:21.104Z"
+  },
+  {
+    "url": "youtube.com",
+    "status": "DOWN",
+    "latency": 0,
+    "time": "2026-04-12T12:45:16.741Z"
+  },
+  {
+    "url": "movierulz",
+    "status": "DOWN",
+    "latency": 0,
+    "time": "2026-04-12T12:45:06.839Z"
+  },
+  {
+    "url": "bing.com",
+    "status": "DOWN",
+    "latency": 0,
+    "time": "2026-04-12T12:41:50.160Z"
+  },
+  {
+    "url": "bing.com",
+    "status": "DOWN",
+    "latency": 0,
+    "time": "2026-04-12T12:41:49.230Z"
+  },
+  {
+    "url": "bing",
+    "status": "DOWN",
+    "latency": 0,
+    "time": "2026-04-12T12:41:45.879Z"
+  },
+  {
+    "url": "bing",
+    "status": "DOWN",
+    "latency": 0,
+    "time": "2026-04-12T12:41:45.006Z"
+  }
+]

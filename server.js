@@ -1,56 +1,51 @@
-const express = require("express");
-const axios = require("axios");
-const fs = require("fs");
-const { exec } = require("child_process");
+const express = require('express');
+const path = require('path');
+const axios = require('axios');
 
 const app = express();
+const PORT = 3000;
+
+app.use(express.static(__dirname));
 app.use(express.json());
-app.use(express.static("public"));
 
-const FILE = "checks.json";
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-app.post("/check", async (req, res) => {
-    const url = req.body.url;
-
+app.post('/check', async (req, res) => {
     try {
+        let { url } = req.body;
+
+        if (!url.startsWith('http')) {
+            url = 'https://' + url;
+        }
+
         const start = Date.now();
-        const response = await axios.get(url);
+
+        const response = await axios.get(url, {
+            timeout: 5000,
+            validateStatus: () => true
+        });
+
         const latency = Date.now() - start;
 
-        const result = { status: "UP", latency };
-        saveData(url, result);
+        res.json({
+            online: response.status < 500,
+            status: response.status,
+            latency,
+            url
+        });
 
-        res.json(result);
-
-    } catch {
-        exec(`node validate.js ${url}`);
-
-        const result = { status: "DOWN", latency: 0 };
-        saveData(url, result);
-
-        res.json(result);
+    } catch (error) {
+        res.json({
+            online: false,
+            status: 'ERROR',
+            latency: 0,
+            url: req.body.url
+        });
     }
 });
-app.get("/history", (req, res) => {
-    const fs = require("fs");
-    const data = JSON.parse(fs.readFileSync("checks.json"));
-    res.json(data);
-});
-function saveData(url, result) {
-    let data = [];
 
-    try {
-        data = JSON.parse(fs.readFileSync(FILE));
-    } catch {
-        data = [];
-    }
-
-    data.unshift({ url, ...result, time: new Date() });
-    data = data.slice(0, 10);
-
-    fs.writeFileSync(FILE, JSON.stringify(data, null, 2));
-}
-
-app.listen(3000, () => {
-    console.log("🚀 Server running at http://localhost:3000");
+app.listen(PORT, () => {
+    console.log(`APP-SENTINEL running on http://localhost:${PORT}`);
 });

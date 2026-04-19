@@ -2,194 +2,138 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>API SENTINEL | PRO</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Sentinel</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap');
-
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background: #050505;
-            overflow-x: hidden;
-        }
-
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveGrid 20s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes moveGrid {
-            from {
-                transform: translateY(0);
-            }
-
-            to {
-                transform: translateY(50px);
-            }
-        }
-
-        .header-style {
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 2px 2px #ff0000, -2px -2px #0000ff;
-            letter-spacing: 0.5rem;
-        }
-
-        .glow-green {
-            text-shadow: 0 0 15px rgba(34, 197, 94, 0.8);
-        }
-
-        .fade-row {
-            animation: slideIn 0.3s ease-out forwards;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-    </style>
 </head>
 
-<body class="text-white p-6">
-    <div class="bg-grid"></div>
-
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center mb-8 gap-6">
-        <div class="text-center md:text-left">
-            <h1 class="text-4xl md:text-6xl font-black header-style animate-pulse mb-2">API-SENTINEL</h1>
-            <div class="flex items-center gap-2 text-green-500 text-xs">
-                <span class="inline-block w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
-                CORE SYSTEMS ONLINE // LOCALHOST_ACTIVE
-            </div>
-        </div>
-
-        <div
-            class="bg-white/5 border border-green-500/20 backdrop-blur-md p-6 rounded-lg w-full max-w-sm text-center shadow-[0_0_20px_rgba(34,197,94,0.1)]">
-            <span class="text-gray-500 text-[10px] uppercase tracking-[0.3em]">Current Status</span>
-            <div id="status-display" class="text-4xl font-bold mt-1">IDLE</div>
-        </div>
+<body class="bg-slate-950 text-white min-h-screen overflow-hidden">
+    <div
+        class="fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.16),transparent_28%)]">
     </div>
 
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div class="lg:col-span-1 space-y-6">
-            <div class="bg-white/10 p-4 rounded border border-white/10 shadow-xl">
-                <input id="url"
-                    class="w-full bg-black border border-green-900 p-3 text-green-400 rounded focus:border-green-400 outline-none mb-3 transition-all"
-                    placeholder="google.com">
-                <button onclick="checkAPI()"
-                    class="w-full bg-green-600 hover:bg-green-500 text-black font-bold py-3 rounded transform active:scale-95 transition-all uppercase text-sm tracking-widest">
-                    Execute Scan
-                </button>
+    <div class="relative max-w-7xl mx-auto px-6 py-8">
+        <header class="flex items-center justify-between mb-10">
+            <div>
+                <h1
+                    class="text-4xl font-bold tracking-wide bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
+                    API SENTINEL</h1>
+                <p class="text-slate-400 text-sm">Threat-aware endpoint intelligence</p>
             </div>
+            <div class="px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 text-sm">
+                System Ready</div>
+        </header>
 
-            <div class="bg-black/80 border border-green-900/40 p-4 rounded h-64 overflow-hidden relative">
-                <div class="text-[9px] text-green-700 mb-2 font-bold uppercase tracking-widest">System Messages</div>
-                <div id="logs" class="text-[11px] text-green-500/80 leading-relaxed">
-                    <p>> AI Core initialized...</p>
+        <section class="grid lg:grid-cols-3 gap-6 mb-8">
+            <div class="lg:col-span-2 bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
+                <p class="uppercase tracking-[0.3em] text-xs text-cyan-300">Endpoint scanner</p>
+                <h2 class="text-5xl font-bold mt-4 leading-tight">Monitor APIs like a<br><span
+                        class="text-cyan-400">command center</span></h2>
+                <p class="text-slate-400 mt-4 max-w-2xl">Scan an endpoint and instantly surface uptime, latency, health
+                    scoring and automated threat analysis in a premium monitoring console.</p>
+
+                <div class="mt-8 flex gap-3">
+                    <input id="url"
+                        class="flex-1 rounded-2xl px-5 py-4 bg-slate-900/70 border border-cyan-500/30 outline-none focus:border-cyan-400"
+                        placeholder="https://api.example.com/health" />
+                    <button onclick="checkAPI()"
+                        class="rounded-2xl px-8 py-4 bg-cyan-500 hover:bg-cyan-400 font-semibold transition">Scan</button>
                 </div>
             </div>
-        </div>
 
-        <div
-            class="lg:col-span-3 bg-white/5 border border-white/10 backdrop-blur-lg rounded-xl overflow-hidden shadow-2xl">
-            <div class="bg-white/5 p-4 border-b border-white/10 flex justify-between items-center">
-                <h2 class="text-green-400 font-bold tracking-widest text-sm uppercase flex items-center gap-2">
-                    <span class="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span> Live Telemetry
-                </h2>
-                <span class="text-[10px] text-gray-500 font-mono" id="clock">00:00:00</span>
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl text-center">
+                <p class="text-slate-400 uppercase text-xs tracking-[0.25em]">Health Index</p>
+                <div id="scoreText" class="text-8xl font-bold text-cyan-400 mt-4">97</div>
+                <p id="healthLabel" class="text-emerald-300 mt-2">Optimal</p>
+                <div class="grid grid-cols-3 gap-3 mt-8 text-center">
+                    <div>
+                        <p class="text-xs text-slate-500">State</p>
+                        <p id="statusText" class="font-semibold">Idle</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500">Latency</p>
+                        <p id="latencyText" class="font-semibold">0ms</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500">Code</p>
+                        <p id="codeText" class="font-semibold">---</p>
+                    </div>
+                </div>
             </div>
-            <div class="overflow-x-auto">
+        </section>
+
+        <section class="grid lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
+                <p class="text-slate-400 text-sm">Total Scans</p>
+                <p id="totalScans" class="text-4xl font-bold mt-2">0</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
+                <p class="text-slate-400 text-sm">Availability</p>
+                <p id="onlineRatio" class="text-4xl font-bold mt-2">0%</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
+                <p class="text-slate-400 text-sm">Avg Response</p>
+                <p id="avgLatency" class="text-4xl font-bold mt-2">0ms</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
+                <p class="text-slate-400 text-sm">Threat Level</p>
+                <p id="threatLevel" class="text-4xl font-bold mt-2">Low</p>
+            </div>
+        </section>
+
+        <section class="grid lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-white/5 border border-white/10 rounded-3xl p-8">
+                <div class="flex justify-between mb-5">
+                    <h3 class="text-xl font-semibold">Request Telemetry</h3><span class="text-slate-400 text-sm">Live
+                        feed</span>
+                </div>
                 <table class="w-full text-left">
-                    <thead class="bg-black/40 text-gray-400 text-[10px] uppercase font-bold">
+                    <thead class="text-slate-400 border-b border-white/10">
                         <tr>
-                            <th class="p-4">Target URL</th>
-                            <th class="p-4">Status</th>
-                            <th class="p-4">Latency</th>
-                            <th class="p-4">Time</th>
+                            <th class="py-3">Endpoint</th>
+                            <th>Status</th>
+                            <th>Latency</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
-                    <tbody id="history" class="text-sm"></tbody>
+                    <tbody id="history"></tbody>
                 </table>
             </div>
-        </div>
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-8">
+                <h3 class="text-xl font-semibold mb-4">Threat Intelligence</h3>
+                <p id="aiInsight" class="text-slate-300 leading-7">Awaiting first endpoint scan to generate performance
+                    diagnostics.</p>
+            </div>
+        </section>
     </div>
 
     <script>
-        setInterval(() => {
-            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
-        }, 1000);
-
-        function addLog(msg) {
-            const logs = document.getElementById('logs');
-            const p = document.createElement('p');
-            p.innerHTML = `> ${msg}`;
-            logs.prepend(p);
-            if (logs.children.length > 10) logs.lastElementChild.remove();
-        }
-
+        let scans = []; let onlineCount = 0;
         async function checkAPI() {
-            const urlInput = document.getElementById("url");
-            let url = urlInput.value.trim();
-            const statusDisplay = document.getElementById("status-display");
-
-            if (!url) return alert("Enter a URL");
-
-            if (!url.startsWith('http')) {
-                url = 'https://' + url;
-            }
-
-            statusDisplay.innerHTML = `<span class="animate-pulse text-blue-400">SCANNING...</span>`;
-            addLog(`Requesting: ${url}`);
-
-            try {
-                const start = Date.now();
-                // mode 'no-cors' allows us to ping sites without a backend
-                await fetch(url, { mode: 'no-cors' });
-                const latency = Date.now() - start;
-                renderResult(url, "UP", latency);
-            } catch (error) {
-                renderResult(url, "DOWN", 0);
-            }
+            const input = document.getElementById('url'); const url = input.value.trim();
+            if (!url) return alert('Enter API URL');
+            document.getElementById('statusText').innerText = 'Scan';
+            const res = await fetch('/check', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url }) });
+            const data = await res.json();
+            renderResult(data.url || url, data.online ? 'ONLINE' : 'DOWN', data.latency || 0, data.status || 'ERR');
         }
-
-        function renderResult(url, status, latency) {
-            const isUp = status === "UP";
-            const color = isUp ? "text-green-400" : "text-red-500";
-            const statusText = isUp ? "ACTIVE" : "OFFLINE";
-
-            // 1. Update Top Display
-            document.getElementById("status-display").innerHTML = `
-                <span class="${color} glow-green font-black">${statusText}</span>
-                <div class="text-[10px] text-gray-400">${latency} MS</div>
-            `;
-
-            // 2. Update Table
-            const historyBody = document.getElementById("history");
-            const row = document.createElement("tr");
-            row.className = "border-b border-white/5 fade-row hover:bg-white/5";
-            row.innerHTML = `
-                <td class="p-4 font-bold text-gray-300 truncate max-w-[200px]">${url}</td>
-                <td class="p-4 ${color} font-black">${statusText}</td>
-                <td class="p-4 text-gray-400">${latency}ms</td>
-                <td class="p-4 text-gray-600 text-[10px] font-mono">${new Date().toLocaleTimeString()}</td>
-            `;
-            historyBody.prepend(row);
-
-            addLog(`${url} -> ${statusText} [${latency}ms]`);
+        function renderResult(url, status, latency, code) {
+            document.getElementById('statusText').innerText = status;
+            document.getElementById('latencyText').innerText = latency + 'ms';
+            document.getElementById('codeText').innerText = code;
+            scans.push(latency); if (status === 'ONLINE') onlineCount++;
+            const score = Math.max(25, 100 - Math.floor(latency / 4) - (status === 'DOWN' ? 35 : 0));
+            document.getElementById('scoreText').innerText = score;
+            document.getElementById('healthLabel').innerText = score > 85 ? 'Optimal' : score > 65 ? 'Stable' : score > 45 ? 'Warning' : 'Critical';
+            document.getElementById('totalScans').innerText = scans.length;
+            document.getElementById('onlineRatio').innerText = Math.round((onlineCount / scans.length) * 100) + '%';
+            document.getElementById('avgLatency').innerText = Math.round(scans.reduce((a, b) => a + b, 0) / scans.length) + 'ms';
+            document.getElementById('threatLevel').innerText = latency < 150 ? 'Low' : latency < 400 ? 'Medium' : 'High';
+            document.getElementById('aiInsight').innerText = status === 'DOWN' ? 'Endpoint unreachable. Connection failed or upstream service returned a critical response.' : latency < 150 ? 'No abnormal latency spikes detected. TLS negotiation and response stability appear healthy.' : latency < 400 ? 'Moderate response delay detected. Consider caching or database query optimization.' : 'High latency pattern detected. Infrastructure or third-party dependency bottlenecks may need investigation.';
+            const row = document.createElement('tr'); row.className = 'border-b border-white/5';
+            row.innerHTML = `<td class="py-4">${url}</td><td>${status}</td><td>${latency}ms</td><td>${new Date().toLocaleTimeString()}</td>`;
+            document.getElementById('history').prepend(row);
         }
     </script>
 </body>
